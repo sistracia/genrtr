@@ -5,7 +5,13 @@ import { readItems } from "@directus/sdk";
 
 const posts = await directus.request(
   readItems("posts", {
-    fields: ["slug", "title", "published_date", { author: ["name"] }],
+    fields: [
+      "slug",
+      "title",
+      "published_date",
+      /* @ts-ignore */
+      { author: ["name"] },
+    ],
     sort: ["-published_date"],
   })
 );

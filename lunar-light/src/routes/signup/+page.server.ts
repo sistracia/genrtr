@@ -58,7 +58,6 @@ export const actions: Actions = {
 				...sessionCookie.attributes
 			});
 		} catch (e) {
-			console.log(e);
 			if (isPostgresError(e) && e.code === '23505') {
 				return fail(400, {
 					message: 'Username already used'

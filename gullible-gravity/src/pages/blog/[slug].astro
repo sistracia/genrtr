@@ -1,12 +1,16 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import directus from "../../lib/directus";
-import { readItems, readItem } from "@directus/sdk";
+import { readItems } from "@directus/sdk";
 
 export async function getStaticPaths() {
   const posts = await directus.request(
     readItems("posts", {
-      fields: ["*", { relation: ["*"] }],
+      fields: [
+        "*",
+        /* @ts-ignore */
+        { relation: ["*"] },
+      ],
     })
   );
   return posts.map((post) => ({ params: { slug: post.slug }, props: post }));
